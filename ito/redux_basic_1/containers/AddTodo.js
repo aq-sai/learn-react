@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions'
-​
+
 const AddTodo = ({ dispatch }) => {
   let input
-​
+
   return (
     <div>
       <form
         onSubmit={e => {
-          e.preventDefault()
+          e.preventDefault()              //イベントがキャンセル可能な場合、上位ノードへのイベント伝播を止めずに、そのイベントをキャンセルする
           if (!input.value.trim()) {
             return
           }

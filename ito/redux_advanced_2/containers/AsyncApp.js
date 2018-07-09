@@ -16,12 +16,12 @@ class AsyncApp extends Component {
         this.handleRefleshClick = this.handleRefleshClick.bind(this)
     }
 
-    componentDidMount() {
+    componentDidMount() { //DOMに関する初期化処理。server-side renderingの時には呼ばれない。
         const { dispatch, selectSubreddit } = this.props
         dispatch(fetchPostsIfNeeded(selectSubreddit))
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps) {  //componentが更新された後に呼ばれる(初回時には呼ばれない)。
         if (this.props.selectedSubreddit !== prevProps.selectedSubreddit) {
             const { dispatch, selectedSubreddit } = this.props
             dispatch(fetchPostsIfNeeded(selectedSubreddit))
@@ -80,7 +80,7 @@ AsyncApp.PropTypes = {
     dispatch: PropTypes.func.isRequired
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state) {　　//reduxのストアを第一引数に取る関数で、componentにpropとして渡すものフィルタリングしたい時に使う
     const { selectedSubreddit, postsBySubreddit } = state
     const {
         isFetching,

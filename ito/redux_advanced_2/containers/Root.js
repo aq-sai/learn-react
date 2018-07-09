@@ -5,7 +5,7 @@ import asyncApp from './AsyncApp'
 
 const store = configureStore()
 
-extends default class Root extends Component {
+export default class Root extends Component {
     render() {
         return (
             <Provider store={store}>

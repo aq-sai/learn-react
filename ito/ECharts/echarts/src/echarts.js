@@ -16,7 +16,7 @@
 * specific language governing permissions and limitations
 * under the License.
 */
-import {__DEV__} from './config';
+import { __DEV__ } from './config';
 import * as zrender from 'zrender/src/zrender';
 import * as zrUtil from 'zrender/src/core/util';
 import * as colorTool from 'zrender/src/tool/color';
@@ -35,7 +35,7 @@ import ComponentView from './view/Component';
 import ChartView from './view/Chart';
 import * as graphic from './util/graphic';
 import * as modelUtil from './util/model';
-import {throttle} from './util/throttle';
+import { throttle } from './util/throttle';
 import seriesColor from './visual/seriesColor';
 import aria from './visual/aria';
 import loadingDefault from './loading/default';
@@ -366,7 +366,7 @@ echartsProto.setOption = function (option, notMerge, lazyUpdate) {
     this._model.setOption(option, optionPreprocessorFuncs);
 
     if (lazyUpdate) {
-        this[OPTION_UPDATED] = {silent: silent};
+        this[OPTION_UPDATED] = { silent: silent };
         this[IN_MAIN_PROCESS] = false;
     }
     else {
@@ -718,7 +718,7 @@ echartsProto.containPixel = function (finder, value) {
 echartsProto.getVisual = function (finder, visualType) {
     var ecModel = this._model;
 
-    finder = modelUtil.parseFinder(ecModel, finder, {defaultMainType: 'series'});
+    finder = modelUtil.parseFinder(ecModel, finder, { defaultMainType: 'series' });
 
     var seriesModel = finder.seriesModel;
 
@@ -733,8 +733,8 @@ echartsProto.getVisual = function (finder, visualType) {
     var dataIndexInside = finder.hasOwnProperty('dataIndexInside')
         ? finder.dataIndexInside
         : finder.hasOwnProperty('dataIndex')
-        ? data.indexOfRawIndex(finder.dataIndex)
-        : null;
+            ? data.indexOfRawIndex(finder.dataIndex)
+            : null;
 
     return dataIndexInside != null
         ? data.getItemVisual(dataIndexInside, visualType)
@@ -880,7 +880,7 @@ var updateMethods = {
         // Keep pipe to the exist pipeline because it depends on the render task of the full pipeline.
         // this._scheduler.performVisualTasks(ecModel, payload, 'layout', true);
         this._scheduler.performVisualTasks(
-            ecModel, payload, {setDirty: true, dirtyMap: seriesDirtyMap}
+            ecModel, payload, { setDirty: true, dirtyMap: seriesDirtyMap }
         );
 
         // Currently, not call render of components. Geo render cost a lot.
@@ -907,7 +907,7 @@ var updateMethods = {
         clearColorPalette(ecModel);
 
         // Keep pipe to the exist pipeline because it depends on the render task of the full pipeline.
-        this._scheduler.performVisualTasks(ecModel, payload, {setDirty: true});
+        this._scheduler.performVisualTasks(ecModel, payload, { setDirty: true });
 
         render(this, this._model, this._api, payload);
 
@@ -1001,7 +1001,7 @@ function updateDirectly(ecIns, method, payload, mainType, subType) {
     query[mainType + 'Index'] = payload[mainType + 'Index'];
     query[mainType + 'Name'] = payload[mainType + 'Name'];
 
-    var condition = {mainType: mainType, query: query};
+    var condition = { mainType: mainType, query: query };
     subType && (condition.subType = subType); // subType may be '' by parseClassType;
 
     var excludeSeriesId = payload.excludeSeriesId;
@@ -1130,7 +1130,7 @@ echartsProto.makeActionFromEvent = function (eventObj) {
  */
 echartsProto.dispatchAction = function (payload, opt) {
     if (!isObject(opt)) {
-        opt = {silent: !!opt};
+        opt = { silent: !!opt };
     }
 
     if (!actions[payload.type]) {
@@ -1866,7 +1866,7 @@ export function dispose(chart) {
     if (typeof chart === 'string') {
         chart = instances[chart];
     }
-    else if (!(chart instanceof ECharts)){
+    else if (!(chart instanceof ECharts)) {
         // Try to treat as dom
         chart = getInstanceByDom(chart);
     }
@@ -1957,7 +1957,7 @@ export function registerAction(actionInfo, eventName, action) {
     assert(ACTION_REG.test(actionType) && ACTION_REG.test(eventName));
 
     if (!actions[actionType]) {
-        actions[actionType] = {action: action, actionInfo: actionInfo};
+        actions[actionType] = { action: action, actionInfo: actionInfo };
     }
     eventActionMap[eventName] = actionType;
 }
@@ -1979,8 +1979,8 @@ export function getCoordinateSystemDimensions(type) {
     var coordSysCreator = CoordinateSystemManager.get(type);
     if (coordSysCreator) {
         return coordSysCreator.getDimensionsInfo
-                ? coordSysCreator.getDimensionsInfo()
-                : coordSysCreator.dimensions.slice();
+            ? coordSysCreator.getDimensionsInfo()
+            : coordSysCreator.dimensions.slice();
     }
 }
 

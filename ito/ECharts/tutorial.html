@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <mata charset="utf-8">
+        <title>ECharts</title>
+        <script src="echarts/dist/echarts.js"></script>
+</head>
+
+<body>
+    <div id="main" style="width: 600px;height: 400px;"></div>
+    <script type="text/javascript">
+        //準備されたDOMに基づいて、echartsインスタンスを初期化する
+        var myChart = echarts.init(document.getElementById('main'));
+
+        //チャート構成項目とデータを指定する
+        var option = {
+            //チャートのタイトル
+            title: {
+                text: 'ECharts entry example'
+            },
+            //マウスオーバーした時に出てくる情報の設定
+            tooltip: {
+                backgroundColor: 'black'
+            },
+            //グラフが何を表しているか(このチャートでいう"sales"のとこ)
+            legend: {
+                data: ['Sales']
+            },
+            //X軸の項目
+            xAxis: {
+                data: ["shirt", "cardign", "chiffon shirt", "pants", "heels", "socks"]
+            },
+            //y軸の項目
+            yAxis: {},
+            //グラフの名前、種類、データ
+            series: [{
+                name: 'Sales',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+        //チャートを表示するために、指定された設定項目とデータを使用する
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>

@@ -6,6 +6,8 @@ var downBorderColor = '#008F28';
 var dataCount = 2e5;
 var data = generateOHLC(dataCount);
 
+var myChart = echarts.init(document.getElementById('main'));
+
 var option = {
     dataset: {
         source: data
@@ -202,3 +204,4 @@ function generateOHLC(count) {
         return sign;
     }
 }
+myChart.setOption(option);
